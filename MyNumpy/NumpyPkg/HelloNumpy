@@ -1,0 +1,95 @@
+import numpy as np
+
+#numpy.array(object, dtype = None, copy = True, order = None, subok = False, ndmin = 0)
+#上面的构造器接受以下参数：
+#序号	参数及描述
+#1.	object 任何暴露数组接口方法的对象都会返回一个数组或任何（嵌套）序列。
+#2.	dtype 数组的所需数据类型，可选。
+#3.	copy 可选，默认为true，对象是否被复制。
+#4.	order C（按行）、F（按列）或A（任意，默认）。
+#5.	subok 默认情况下，返回的数组被强制为基类数组。 如果为true，则返回子类。
+#6.	ndimin 指定返回数组的最小维数。
+
+a = np.array([1,2,3])
+print(a)
+
+a = np.array([[1,2],[4,5],[8,9]])
+print(a)
+print(a.dtype)
+print(a.shape)
+
+a = np.array([1,2,3,4,5], ndmin =  2)
+print(a)
+
+a = np.array([1,  2,  3], dtype = complex)
+print(a)
+
+'''
+dtype可由一下语法构造：
+numpy.dtype(object, align, copy)
+
+参数为：
+
+Object：被转换为数据类型的对象。
+Align：如果为true，则向字段添加间隔，使其类似C的结构体。
+
+Copy： 生成dtype对象的新副本，如果为flase，结果是内建数据类型对象的引用
+'''
+
+student = np.dtype([('name','S20'),  ('age',  'i1'),  ('marks',  'f4')])
+print(student)
+a = np.array([('abc',  21,  50),('xyz',  18,  75)], dtype = student)
+print(a)
+
+a = np.array([[1,2,3],[4,5,6]])
+a.shape = (3,2)
+print(a)
+a = np.array([[1,2,3],[4,5,6]])
+b = a.reshape(3,2)
+print(b)
+
+import numpy.matlib
+print(np.matlib.zeros((2,2)))
+
+from matplotlib import pyplot as plt
+
+x = np.arange(1, 11)
+y = 2 * x + 5
+plt.title("Matplotlib demo")
+plt.xlabel("x axis caption")
+plt.ylabel("y axis caption")
+plt.plot(x, y)
+plt.show()
+
+
+x = np.arange(0,  3  * np.pi,  0.1)
+y = np.sin(x)
+plt.title("sine wave form")
+# 使用 matplotlib 来绘制点
+plt.plot(x, y)
+plt.show()
+
+
+# 计算正弦和余弦曲线上的点的 x 和 y 坐标
+x = np.arange(0,  3  * np.pi,  0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+# 建立 subplot 网格，高为 2，宽为 1
+# 激活第一个 subplot
+plt.subplot(2,  1,  1)
+# 绘制第一个图像
+plt.plot(x, y_sin)
+plt.title('Sine')
+# 将第二个 subplot 激活，并绘制第二个图像
+plt.subplot(2,  1,  2)
+plt.plot(x, y_cos)
+plt.title('Cosine')
+# 展示图像
+plt.show()
+
+
+a = np.array([22,87,5,43,56,73,55,54,11,20,51,5,79,31,27])
+plt.hist(a, bins =  [0,20,40,60,80,100])
+plt.title("histogram")
+plt.show()
+
